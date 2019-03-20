@@ -55,9 +55,10 @@ This function builds the code string to show the player how close their guess wa
   <ul>
   <li>Create copies of the game word and the player guess in order to modify them and maintain the original variables.</li>
   <li>The two loops will iterate the words in different steps, at each i=0..4, the jth value will cycle from 0 to 4.</li>
-  <li>i will be accessing the values of the chosen game word by letter.</li>
+  <li>i will be accessing the values of the chosen game word letter-wise.</li>
   </ul>
- </p>
+  
+  <blockquote class="imgur-embed-pub" lang="en" data-id="F9mTqFl"><a href="//imgur.com/F9mTqFl">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 
 <h2> Improvements </h2>
