@@ -17,7 +17,7 @@
 
 <h2> Implementation </h2>
 <p>
-  All
+  Most functions are self explanatory. I did want to go over the few I touched in the video since those are the ones driving the game.
  </p>
 
 
@@ -25,13 +25,13 @@
 
 <h2> Improvements </h2>
 <p>
-  In regards to main, I will most likely move the CreateResponse function as a private function and only call it from inside the ComputerTurn(). I didn't want to create a continuation style approach, giving ComputerTurn too much power, but I don't believe an important function should be called in the main. I would also change the inner loop of checking the input to an empty string with another bool character within the class. 
+  In regards to main, I will most likely move the CreateResponse function as a private function and only call it from inside the ComputerTurn(). I didn't want to create a continuation style approach and give ComputerTurn too much power, but I feel that is next course of action if I were to hide more details from the client. I would also change the inner loop of checking the input to an empty string with another bool character within the class. 
 </p>
 
 <p>
-The header will change accordingly and add the necessary new variables and getters to access them in the main.
+The header will change accordingly and add the necessary new variables and getters to access them in the main. The logic in CreateResponse could also be handled better and may not need an extra copy set of the current guess and the actual word. I don't feel that it is intuitive enough to explain without writing down, and that is not the purpose of having good code. 
 </p>
 
 <p>
-Another Player class could be added if the game were to include the ability of having two human players. It would require some restructuring of the current code however. The PlayerTurn and ComputerTurn methods would need to be condensed into similar abilities. Or perhaps include function overloading. There are many ways to achieve this to make the game more robust. I would ideally love to include a graphical interface and perhaps have a file output of streaks and guess attempts.
+Aside from changing th current code, a Player class could be added if the game were to include the ability of having two human players. It would require some restructuring of the current code however. The PlayerTurn and ComputerTurn methods would need to be condensed into similar abilities. Or perhaps include function overloading. There are many ways to achieve this to make the game more robust. I would ideally love to include a graphical interface and perhaps have a file output of streaks and guess attempts. 
 </p>
