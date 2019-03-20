@@ -56,6 +56,7 @@ This function builds the code string to show the player how close their guess wa
   <li>Create copies of the game word and the player guess in order to modify them and maintain the original variables.</li>
   <li>The two loops will iterate the words in different steps, at each i=0..4, the jth value will cycle from 0 to 4.</li>
   <li>i will be accessing the values of the chosen game word letter-wise.</li>
+  <li>Lump the string made together and set the response.</li>
   </ul>
   
   <img src ="https://i.imgur.com/F9mTqFl.png" alt="iterating">
@@ -73,3 +74,6 @@ The header will change accordingly and add the necessary new variables and gette
 <p>
 Aside from changing th current code, a Player class could be added if the game were to include the ability of having two human players. It would require some restructuring of the current code however. The PlayerTurn and ComputerTurn methods would need to be condensed into similar abilities. Or perhaps include function overloading. There are many ways to achieve this to make the game more robust. I would ideally love to include a graphical interface and perhaps have a file output of streaks and guess attempts. 
 </p>
+
+ <img src ="https://i.imgur.com/YuwPgfR.png" alt="iterating">
+
