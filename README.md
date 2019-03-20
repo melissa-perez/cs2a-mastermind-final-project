@@ -20,8 +20,9 @@
   Most functions are self explanatory. I did want to go over the few I touched in the video since those are the ones driving the game.
  </p>
 
+<p>
 <b>ComputerTurn()</b>
-<p>So this function acts as the mediator between the player and game.
+So this function acts as the mediator between the player and game.
   
   <ul>
   <li>The input of Q, surpasses all input since the player will want to quit immediately.</li>
@@ -32,6 +33,18 @@
   </ul>
  </p>
 
+<p>
+<b>PlayerTurn()</b>
+So this function acts as the mediator between the player and game.
+  
+  <ul>
+  <li>The input of Q, surpasses all input since the player will want to quit immediately.</li>
+  <li>The input of H, follow since the player the player will want to view the help. If it's the beginning of the game add, display help once.</li>
+  <li>Now follows the result of having to check the response created, if it happens to be true then the game has ended.</li>
+  <li>If not, the last option is to show the player the code and move to the playerTurn.</li>
+  <li>At this point, set the old guess to the empty string, regardless since the player will have to input a new response OR the game will end during the checkpoint in the main.</li>
+  </ul>
+ </p>
 
 
 <h2> Improvements </h2>
