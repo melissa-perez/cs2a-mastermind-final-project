@@ -2,7 +2,7 @@
     CS-2A Extra Credit - Mastermind
     Purpose: Two-player game where Player 2 tries
     to guess Player 1's 4-letter word.
-    URL to video:
+    URL to video: https://youtu.be/XjHVpYH9AQk
 
     @author Melissa Perez
     @version 1.0 3/18/19
