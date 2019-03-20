@@ -1,3 +1,3 @@
 # CS2A_MASTERMIND
 
-<h1> Mastermind </h1>
+<h1 align="center"> Mastermind </h1>
