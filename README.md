@@ -58,7 +58,7 @@ This function builds the code string to show the player how close their guess wa
   <li>i will be accessing the values of the chosen game word letter-wise.</li>
   </ul>
   
-  <blockquote class="imgur-embed-pub" lang="en" data-id="F9mTqFl"><a href="//imgur.com/F9mTqFl">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+  <img src ="https://i.imgur.com/F9mTqFl.png" alt="iterating">
 
 
 <h2> Improvements </h2>
