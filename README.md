@@ -1,6 +1,3 @@
 # CS2A_MASTERMIND
 
-<p>
-  
-  is this css?
- </p>
+<h1> Mastermind </h1>
