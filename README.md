@@ -12,8 +12,13 @@
 
 <h2> Designing </h2>
 <p>
-  I decided that all the code would be contained in the Game class. The main has the looping mechanisms to continue repeating the game until the player quits or guesses correctly, and if the player would like to play a new game. Apart from that, all input and output is maintained inside the class. 
+  I decided that all the code would be contained in the Game class. The main has the looping mechanisms to continue repeating the game until the player quits or guesses correctly, and if the player would like to play a new game. Apart from that, all input and output is maintained inside the class. Variables that I believed should not be changed were made into static constant variables. This is because I didn't want the constant variables to keep being initialized at each new Game instance being created. The word bank of all the words was created in this manner, as File I/O is a costly expense. All player input is submitted through a check since that would be the main point of errors barring all game logic handling. 
 </p>
+
+<h2> Implementation </h2>
+<p>
+  All
+ </p>
 
 
 
