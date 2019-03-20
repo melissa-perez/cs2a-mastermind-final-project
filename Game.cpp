@@ -1,0 +1,383 @@
+#include "Game.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+
+const vector<string> Game::wordBank = CreateWordBank();
+const string Game::helpCommand = "H";
+const string Game::quitCommand = "Q";
+const char Game::continueGame = 'Y';
+const string Game::noMatches = "    ";
+const string Game::winString = "****";
+const int Game::correctLength = 4;
+
+
+//PUBLIC METHODS
+
+/**
+    Constructor of a Game object.
+
+    @param None.
+    @return None.
+*/
+Game::Game()
+{
+    gameTurn = 0;
+    correctGuess = false;
+    wordChosen = wordBank[rand() % wordBank.size()];
+    playerWord = "";
+    computerResponse = "";
+    playGameAgain = true;
+}
+
+/**
+    Prints the introduction of the game.
+
+    @param None.
+    @return None.
+*/
+void Game::PrintIntroduction()
+{
+    cout << "Welcome to MASTERMIND!" << endl;
+    cout << "The goal of MASTERMIND is to guess the correct\n"
+         << "4-LETTER word the COMPUTER has picked." << endl;
+}
+
+/**
+    The structure of the computer's turn.
+    The computer checks whether what conditions are
+    satisfies in order to print the corresponding
+    response.
+
+    TODO: It also modifies values, NOT SURE IF I SHOULD REMOVE.
+    MODIFIES: playerWord and correctGuess.
+
+    @param None.
+    @return None.
+*/
+void Game::ComputerTurn()
+{
+    if(playerWord == quitCommand)
+    {
+        cout << "Computer: Aww you gave up? The word was "
+             << wordChosen << endl;
+        cout << "Computer: Good luck next time." << endl;
+
+        correctGuess = true;
+    }
+    else if(gameTurn == 0
+            || playerWord == helpCommand)
+    {
+        PrintInstructions();
+    }
+    else if(computerResponse == winString)
+    {
+        correctGuess = true;
+        cout << "Computer: You got it! " << gameTurn
+             << " tries." << endl;
+    }
+    else
+    {
+        cout << "Computer: " << computerResponse << endl;
+    }
+
+    playerWord = "";
+}
+
+/**
+    The structure of the player's turn.
+    Gets the user's response and uses the helper function
+    SanitizeInput() which standardizes the input to compare
+    with. (ALL CAPS or allowed extra commands)
+
+    TODO: It also modifies values, NOT SURE IF I SHOULD REMOVE.
+    MODIFIES: gameTurn, playerWord
+
+    @param None.
+    @return None.
+*/
+void Game::PlayerTurn()
+{
+    string input, inputString;
+    cout << "Player: ";
+    getline(cin, input);
+    istringstream(input) >> inputString;
+
+    if(SanitizeInput(inputString))
+    {
+        if(inputString != helpCommand)
+        {
+            if(inputString != quitCommand)
+                gameTurn +=1;
+        }
+
+        playerWord = inputString;
+    }
+    else
+    {
+         playerWord = "";
+    }
+}
+
+/**
+    Returns the variable playerWord's value.
+
+    @param None.
+    @return String.
+*/
+string Game::GetPlayerWord() const
+{
+    return playerWord;
+}
+
+/**
+    Sets the variable playerWord's value outside of Game.
+
+    @param String.
+    @return None.
+*/
+void Game::SetPlayerWord(string playerWord)
+{
+    this -> playerWord = playerWord;
+}
+
+/**
+    Returns the wordChosen value.
+
+    @param None.
+    @return String.
+*/
+string Game::GetWordChosen() const
+{
+    return wordChosen;
+}
+
+/**
+    Returns the correctGuess value.
+
+    @param None.
+    @return Bool.
+*/
+bool Game::GetCorrectGuess() const
+{
+    return correctGuess;
+}
+
+/**
+    Returns the playGameAgain value.
+
+    @param None.
+    @return Bool.
+*/
+bool Game::GetPlayGameAgain() const
+{
+    return playGameAgain;
+}
+
+/**
+    Builds the string to be repeated by the computer.
+    Contains the logic needed to win/continue the game.
+
+    TODO: It also modifies values, NOT SURE IF I SHOULD REMOVE.
+    MODIFIES: computerResponse
+    @param None.
+    @return None.
+*/
+void Game::CreateResponse()
+{
+     string correctLetters, wrongLetters, movedLetters, response;
+     string copyWordChosen = wordChosen;
+     string copyPlayerWord = playerWord;
+
+     bool spaceFlag = true;
+     int i = 0, j = 0;
+
+     while(i < correctLength)
+     {
+         while(j < correctLength)
+         {
+             if (i == j && copyWordChosen[i] == copyPlayerWord[j])
+             {
+                 correctLetters += "*";
+                 copyWordChosen[i] = ' ';
+                 copyPlayerWord[j] = ' ';
+                 spaceFlag = false;
+                 break;
+             }
+             else if (copyWordChosen[j] != copyPlayerWord[j] &&
+             copyWordChosen[i] == copyPlayerWord[j] &&
+             copyPlayerWord[i] != copyWordChosen[i])
+             {
+                 // To ensure hyphen: the jth spot is to check
+                 //whether there isn't future match and the ith
+                 // to check that there wasn't a past match.
+                 //Insert a space in matched letters in order to
+                 // not double count.
+
+                 copyWordChosen[i] = ' ';
+                 copyPlayerWord[j] = ' ';
+                 movedLetters += "-";
+                 spaceFlag = false;
+                 break;
+             }
+             j += 1;
+         }
+         if(spaceFlag)
+         {
+             wrongLetters += " ";
+         }
+         spaceFlag = true;
+         j = 0;
+         i += 1;
+     }
+     response = correctLetters +  movedLetters + wrongLetters;
+
+     if (response == noMatches)
+        computerResponse = "You got nothing. Sorry.";
+     else
+        computerResponse = response;
+}
+
+/**
+    Outputs the complete word bank used by the game to select a
+    random word.
+    @param None.
+    @return None
+*/
+void Game::PrintWordBank()
+{
+    for(size_t  i = 0; i < wordBank.size(); i++)
+    {
+        cout << wordBank[i] << endl;
+    }
+}
+
+/**
+    Outputs the prompt to ask the user if they would like to
+    play again.
+    MODIFIES: playGameAgain
+    @param None.
+    @return None
+*/
+void Game::playAgain()
+{
+    string userInput;
+    char playAgain = 'y';
+
+    cout << "Would you like to play another game? Enter Y: ";
+    getline(cin, userInput);
+    istringstream(userInput) >> playAgain;
+    playAgain = char(toupper(playAgain));
+
+    if (playAgain == continueGame)
+    {
+        playGameAgain = true;
+    }
+    else
+    {
+        cout << "Thank you for playing MASTERMIND." << endl;
+        playGameAgain = false;
+    }
+}
+
+//PRIVATE METHODS
+
+/**
+    Creates a vector which stores the game words
+    read from file. Used to assign the value to the class
+    variable wordBank once.
+
+    @param None.
+    @return vector<string>
+*/
+vector<string> Game::CreateWordBank()
+{
+    vector<string> wordVec;
+    string textFileName = "4-letter-words.txt", next;
+    fstream wordDoc;
+
+    wordDoc.open(textFileName, ios::in);
+
+    if (wordDoc.fail())
+    {
+        cout << "Error in opening "
+             << textFileName << ". Ending program." << endl;
+    }
+    else
+    {
+        while(wordDoc >> next)
+        {
+            wordVec.push_back(next);
+        }
+    }
+
+    wordDoc.close();
+    return wordVec;
+}
+
+/**
+    Prints the game instructions.
+    TODO: Currently only called from inside the ComputerTurn().
+    Might need to remove altogether.
+
+    @param None.
+    @return None
+*/
+void Game::PrintInstructions()
+{
+    cout << "Computer: * means one of the letters is right and in the right place." << endl;
+    cout << "Computer: - means one of the letters is right and in the wrong place." << endl;
+    cout << "Computer:   means one of the letters is incorrect." << endl;
+    cout << "Computer: Enter Q to give up and quit the game." << endl;
+    cout << "Computer: Enter H to view these instructions again." << endl;
+}
+
+/**
+    Checks the user input and standardizes the input if input is valid.
+    Conditions: Length 4, all alpha, or either H or Q
+    TODO: Currently only called from inside the ComputerTurn().
+    Might need to remove altogether.
+
+    @param String.
+    @return Bool
+*/
+bool Game::SanitizeInput(string& word)
+{
+    bool foundNumeric = false;
+    string cleanWord;
+
+    for(size_t i = 0; i < word.length(); i++)
+    {
+        if (!isalpha(word[i]))
+        {
+            foundNumeric = true;
+            break;
+        }
+        else
+        {
+            cleanWord += char(toupper(word[i]));
+        }
+    }
+
+    if ((cleanWord == quitCommand || cleanWord == helpCommand) ||
+           int(cleanWord.length()) == correctLength)
+    {
+        word = cleanWord;
+        return true;
+
+    }
+    else if (int(cleanWord.length()) != correctLength || foundNumeric)
+    {
+        cout << "Computer: Incorrect input detected. Try again."
+             << endl;
+    }
+
+    return false;
+}
+
+
+
+
