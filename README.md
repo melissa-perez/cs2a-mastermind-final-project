@@ -4,7 +4,7 @@
 
 <h2> Introduction </h2>
 
-<img src ="https://imgur.com/a/QRsIgIW">
+<img src ="https://i.imgur.com/bJaHvRu.png" alt="code output">
 
 <p>Mastermind is a two-player game in which a player will choose a 4 letter word and will guide the second player to a correct guess or forces  the player to give up. To help the second player, a code is shown as a sequence of asterisks, hyphens, and spaces.  These correspond to a correct letter and proper position, a correct letter and incorrect position, or a incorrect letter, respectively, of the guess attempt. The position of these symbols don't correspond to the locations exactly in the chosen word.
 </p>
