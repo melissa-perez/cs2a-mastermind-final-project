@@ -4,6 +4,8 @@
 
 <h2> Introduction </h2>
 
+<img src ="https://imgur.com/a/QRsIgIW">
+
 <p>Mastermind is a two-player game in which a player will choose a 4 letter word and will guide the second player to a correct guess or forces  the player to give up. To help the second player, a code is shown as a sequence of asterisks, hyphens, and spaces.  These correspond to a correct letter and proper position, a correct letter and incorrect position, or a incorrect letter, respectively, of the guess attempt. The position of these symbols don't correspond to the locations exactly in the chosen word.
 </p>
 
@@ -22,7 +24,7 @@
 
 <p>
 <b>ComputerTurn()</b>
-So this function acts as the mediator between the player and game.
+This function acts as the mediator between the player and game.
   
   <ul>
   <li>The input of Q, surpasses all input since the player will want to quit immediately.</li>
@@ -35,14 +37,25 @@ So this function acts as the mediator between the player and game.
 
 <p>
 <b>PlayerTurn()</b>
-So this function acts as the mediator between the player and game.
+This function receives the player's input and with the SanitizeInput function, provide the game with a correct word value.
   
   <ul>
-  <li>The input of Q, surpasses all input since the player will want to quit immediately.</li>
-  <li>The input of H, follow since the player the player will want to view the help. If it's the beginning of the game add, display help once.</li>
-  <li>Now follows the result of having to check the response created, if it happens to be true then the game has ended.</li>
-  <li>If not, the last option is to show the player the code and move to the playerTurn.</li>
-  <li>At this point, set the old guess to the empty string, regardless since the player will have to input a new response OR the game will end during the checkpoint in the main.</li>
+  <li>Parse the given string input and make sure it's a string value.</li>
+  <li>Call on the helper function to validate this string.</li>
+  <li>Check if this good input is the extra commands H or Q, so the number of attempts doesn't increase.</li>
+  <li>If the input was bogus, then erase the input and prompt the player to try again back at the main.</li>
+  </ul>
+ </p>
+ 
+ 
+ <p>
+<b>CreateResponse()</b>
+This function builds the code string to show the player how close their guess was.
+  
+  <ul>
+  <li>Create copies of the game word and the player guess in order to modify them and maintain the original variables.</li>
+  <li>The two loops will iterate the words in different steps, at each i=0..4, the jth value will cycle from 0 to 4.</li>
+  <li>i will be accessing the values of the chosen game word by letter.</li>
   </ul>
  </p>
 
