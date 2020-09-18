@@ -2,6 +2,8 @@
 
 <h1 align="center"> Mastermind </h1>
 
+Link to presentation: https://www.youtube.com/watch?v=XjHVpYH9AQk&t=53s
+
 <h2> Introduction </h2>
 
 <img src ="https://i.imgur.com/bJaHvRu.png" alt="code output">
