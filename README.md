@@ -8,10 +8,10 @@ Link to presentation: https://www.youtube.com/watch?v=XjHVpYH9AQk&t=53s
 
 <img src ="https://i.imgur.com/bJaHvRu.png" alt="code output">
 
-<p>Mastermind is a two-player game in which a player will choose a 4 letter word and will guide the second player to a correct guess or forces  the player to give up. To help the second player, a code is shown as a sequence of asterisks, hyphens, and spaces.  These correspond to a correct letter and proper position, a correct letter and incorrect position, or a incorrect letter, respectively, of the guess attempt. The position of these symbols don't exactly correspond to the locations of the letters.
+<p>Mastermind is a two player game where a player chooses a 4 letter word and guides the second player to a correct guess or forfeit. To help the second player, a code is shown as a sequence of asterisks, hyphens, and spaces.  These correspond to a correct letter and proper position, a correct letter and incorrect position, or a incorrect letter, respectively, of the guess attempt. The position of these symbols is not one-to-one with the results.
 </p>
 
-<p>In this implementation, Player 1 will be designated as the computer. It will then select a random word from a list read in from a file. The user will be Player 2. These two players alternate their turns until the word is guessed or not. 
+<p>In this implementation, Player 1 will be designated as the computer. It will then select a random word from a file-read list. The user will be Player 2. These two players alternate their turns until the word is guessed or not. 
 </p>
 
 <h2> Designing </h2>
